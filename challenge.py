@@ -19,15 +19,42 @@ import math
 def population(p,r,n):
     return (p*((1+r)**n))
 
+
 def equal(p1,r1,p2,r2):
-    try:
-        (((1+r1)**n)/p2) = (((1+r2)**n)/p1)
-    except: 
+    if 0 in [p1,p2,r1,r2]:
+        if (0 in [p1,r2]) and (0 in [p2,r1]):
+            return None
+        elif (0 in [p1,r2]):
+            if p1==p2:
+                return None
+            elif (math.log((p2/p1), (r1/r2)))>=0:
+                return (math.log((p2/p1), (r1/r2)))
+            else:
+                return None
+        elif (0 in [p2,r1]):
+            if r1==r2:
+                return None
+            elif (math.log((p1/p2), (r2/r1)))>=0:
+                return (math.log((p1/p2), (r2/r1)))
+            else:
+                return None
+        else:
+            return None
+
+    elif r1!=r2:
+        if (math.log((p2/p1), (r1/r2)))>=0:
+            return (math.log((p2/p1), (r1/r2)))
+        else:
+            return None
+
+    else:
         return None
+
 
 def tests():
     assert round(population(1000,.05, 5)) == 1276
     assert round(population(1000,.02, 20)) == 1486
     assert equal(1000,.05,2000,.06) == None
-    assert round(equal(1000,.03,2000,.01)) == 35
-    
+    assert round(equal(1000,.03,2000,.01)) == 35    
+
+tests()
