@@ -21,34 +21,19 @@ def population(p,r,n):
 
 
 def equal(p1,r1,p2,r2):
-    if 0 in [p1,p2,r1,r2]:
-        if (0 in [p1,r2]) and (0 in [p2,r1]):
-            return None
-        elif (0 in [p1,r2]):
-            if p1==p2:
-                return None
-            elif (math.log((p2/p1), (r1/r2)))>=0:
-                return (math.log((p2/p1), (r1/r2)))
-            else:
-                return None
-        elif (0 in [p2,r1]):
-            if r1==r2:
-                return None
-            elif (math.log((p1/p2), (r2/r1)))>=0:
-                return (math.log((p1/p2), (r2/r1)))
-            else:
-                return None
-        else:
-            return None
+   r1 = 1+r1
+   r2 = 1+r2
+   if r1==r2:
+       return None
+   elif (p1==0 and p2>0) and 0>r2:
+       return math.log((p1/p2), (r2/r1))
+   elif (p2==0 and p1>0) and 0>r1:
+       return math.log((p2/p1), (r1/r2))
+   elif math.log((p2/p1), (r1/r2))>=0:
+       return math.log((p2/p1), (r1/r2))
+   else:
+       return None
 
-    elif r1!=r2:
-        if (math.log((p2/p1), (r1/r2)))>=0:
-            return (math.log((p2/p1), (r1/r2)))
-        else:
-            return None
-
-    else:
-        return None
 
 
 def tests():
