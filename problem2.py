@@ -21,8 +21,20 @@ assert triangle(1,1,4) == 0
 (2 points)
 """
 
-def triangle():
-    return
+def triangle(a,b,c):
+    l = [a,b,c]
+    l = sorted(l)
+    try:
+        if (l[-1])>=(l[0]+l[1]):
+            return 0
+        elif ((l[-1])**2)==(((l[0])**2)+((l[1])**2)):
+            return 2
+        elif (((l[0])**2)+((l[1])**2))>((l[-1])**2):
+            return 1
+        elif ((l[-1])**2)>(((l[0])**2)+((l[1])**2)):
+            return 3
+    except:
+        return 0
 
 def tests():
     assert triangle(12,5,13) == 2     
